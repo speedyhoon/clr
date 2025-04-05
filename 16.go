@@ -1,4 +1,5 @@
 // Package clr provides efficient 16-bit and 32-bit color representation types and conversion between hexadecimal, RGB, RGBA and CSS named-colors.
+// Along with W3C named-color hex value constants.
 package clr
 
 import (
