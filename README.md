@@ -1,4 +1,5 @@
 # <img src="/logo.webp" alt="CLR logo" width="200">
+[![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/clr.svg)](https://pkg.go.dev/github.com/speedyhoon/clr)
 [![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/numnam)](https://goreportcard.com/report/github.com/speedyhoon/numnam)
 
 Efficient 16-bit and 32-bit color representation types and conversion between hexadecimal, RGB, RGBA and CSS named-colors.
@@ -9,7 +10,7 @@ Efficient 16-bit and 32-bit color representation types and conversion between he
 * `#f60f`
 
 All CSS named-colors, RGB and RGBA colors can be converted to `C16` with some degree of accuracy loss for non-web-safe colors.
-    
+
 ## 32-bit colors
 `C32` has four 8-bit channels (red, green, blue and alpha transparency) to represent CSS named-colors, RGB, RGBA or 6 and 8-digit hexadecimal colors.
 * `darkviolet`
