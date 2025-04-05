@@ -39,7 +39,7 @@ const (
 	DarkOrchid           C32 = 0x9932ccff
 	DarkRed              C32 = 0x8b0000ff
 	DarkSalmon           C32 = 0xe9967aff
-	DarkSeaGreen         C32 = 0x8fbc8bff
+	DarkSeaGreen         C32 = 0x8fbc8fff
 	DarkSlateBlue        C32 = 0x483d8bff
 	DarkSlateGray        C32 = 0x2f4f4fff
 	DarkTurquoise        C32 = 0x00ced1ff
