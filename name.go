@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	// Alternate spelling of "grey" named-colors are deliberately omitted.
+	// Alternate spellings of `grey` named-colors are deliberately omitted.
 
 	AliceBlue            C32 = 0xf0f8ffff
 	AntiqueWhite         C32 = 0xfaebd7ff
@@ -447,7 +447,7 @@ func FromName(color string) C32 {
 		return AliceBlue
 	case clrn.AntiqueWhite:
 		return AntiqueWhite
-	case clrn.Aqua:
+	case clrn.Aqua, clrn.Cyan:
 		return Aqua
 	case clrn.Aquamarine:
 		return Aquamarine
@@ -489,7 +489,7 @@ func FromName(color string) C32 {
 		return DarkCyan
 	case clrn.DarkGoldenrod:
 		return DarkGoldenrod
-	case clrn.DarkGray:
+	case clrn.DarkGray, clrn.DarkGrey:
 		return DarkGray
 	case clrn.DarkGreen:
 		return DarkGreen
@@ -511,7 +511,7 @@ func FromName(color string) C32 {
 		return DarkSeaGreen
 	case clrn.DarkSlateBlue:
 		return DarkSlateBlue
-	case clrn.DarkSlateGray:
+	case clrn.DarkSlateGray, clrn.DarkSlateGrey:
 		return DarkSlateGray
 	case clrn.DarkTurquoise:
 		return DarkTurquoise
@@ -521,7 +521,7 @@ func FromName(color string) C32 {
 		return DeepPink
 	case clrn.DeepSkyBlue:
 		return DeepSkyBlue
-	case clrn.DimGray:
+	case clrn.DimGray, clrn.DimGrey:
 		return DimGray
 	case clrn.DodgerBlue:
 		return DodgerBlue
@@ -531,7 +531,7 @@ func FromName(color string) C32 {
 		return FloralWhite
 	case clrn.ForestGreen:
 		return ForestGreen
-	case clrn.Fuchsia:
+	case clrn.Fuchsia, clrn.Magenta:
 		return Fuchsia
 	case clrn.Gainsboro:
 		return Gainsboro
@@ -541,7 +541,7 @@ func FromName(color string) C32 {
 		return Gold
 	case clrn.Goldenrod:
 		return Goldenrod
-	case clrn.Gray:
+	case clrn.Gray, clrn.Grey:
 		return Gray
 	case clrn.Green:
 		return Green
@@ -575,7 +575,7 @@ func FromName(color string) C32 {
 		return LightCyan
 	case clrn.LightGoldenrodYellow:
 		return LightGoldenrodYellow
-	case clrn.LightGray:
+	case clrn.LightGray, clrn.LightGrey:
 		return LightGray
 	case clrn.LightGreen:
 		return LightGreen
@@ -587,7 +587,7 @@ func FromName(color string) C32 {
 		return LightSeaGreen
 	case clrn.LightSkyBlue:
 		return LightSkyBlue
-	case clrn.LightSlateGray:
+	case clrn.LightSlateGray, clrn.LightSlateGrey:
 		return LightSlateGray
 	case clrn.LightSteelBlue:
 		return LightSteelBlue
@@ -691,7 +691,7 @@ func FromName(color string) C32 {
 		return SkyBlue
 	case clrn.SlateBlue:
 		return SlateBlue
-	case clrn.SlateGray:
+	case clrn.SlateGray, clrn.SlateGrey:
 		return SlateGray
 	case clrn.Snow:
 		return Snow
@@ -722,5 +722,5 @@ func FromName(color string) C32 {
 	case clrn.YellowGreen:
 		return YellowGreen
 	}
-	return 0
+	return 0 // Black transparent.
 }

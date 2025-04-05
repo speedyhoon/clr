@@ -12,7 +12,7 @@ import (
 type C16 uint16
 
 const (
-	x11             = 0x11     // Multiply to convert each Hex3 digit to Hex6 digit.
+	x11             = 0x11     // Multiply to convert each Hex3 digit to a Hex6 digit.
 	xF              = 0xF      // Isolate each channel using an AND operator.
 	r, g, b         = 12, 8, 4 // Bitshift for each channel
 	hexPrefix       = "#"
@@ -107,7 +107,7 @@ func (c C16) To32() C32 {
 // String returns the shortest possible string representation of color without loosing any color accuracy.
 // Returns:
 //
-//	"red" or,
+//	"red" or
 //	a 4-digit hexadecimal color string when the alpha channel is <= 254 (like `#f608`) otherwise,
 //	a 3-digit hexadecimal color string when the alpha channel equals 255 (like `#f60`).
 func (c C16) String() string {
