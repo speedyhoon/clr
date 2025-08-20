@@ -190,7 +190,13 @@ func (c C32) String() string {
 	return c.Hex4()
 }
 
-// Is24bit checks if a color's red, green and blue channels can be represented as a 16-bit color without any color accuracy loss.
+// Is24bit determines if a color's red, green and blue channels can be represented as a 16-bit color without
+// any color accuracy loss. The alpha (transparency) channel is ignored.
 func (c C32) Is24bit() bool {
 	return c&0xFF000000%x11 != 0 || c&0xFF0000%x11 != 0 || c&0xFF00%x11 != 0
+}
+
+// Is16bit determines if a C32 color can be converted to C16 without any accuracy loss.
+func (c C32) Is16bit() bool {
+	return c&0xFF000000%x11 == 0 && c&0xFF0000%x11 == 0 && c&0xFF00%x11 == 0 && c&0xFF%x11 == 0
 }
