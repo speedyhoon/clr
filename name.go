@@ -151,6 +151,8 @@ const (
 
 	Cyan    = Aqua
 	Magenta = Fuchsia
+
+	TransparentBlack C32 = 0
 )
 
 // ToName converts a 32-bit color to its string name if it exactly matches.
@@ -722,5 +724,5 @@ func FromName(color string) C32 {
 	case clrn.YellowGreen:
 		return YellowGreen
 	}
-	return 0 // Black transparent.
+	return TransparentBlack
 }
