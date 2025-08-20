@@ -1,6 +1,6 @@
 # <img src="/logo.webp" alt="CLR logo" width="200">
 [![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/clr.svg)](https://pkg.go.dev/github.com/speedyhoon/clr)
-[![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/numnam)](https://goreportcard.com/report/github.com/speedyhoon/numnam)
+[![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/clr)](https://goreportcard.com/report/github.com/speedyhoon/clr)
 
 Efficient 16-bit and 32-bit color representation types and conversion between hexadecimal, RGB, RGBA and CSS named-colors.
 
@@ -37,7 +37,7 @@ func main() {
 	fmt.Println(a, b, b.RGBA(), err)
 }
 ```
-Outputs:
+Output:
 ```text
 #ffebcd tan rgb(210,180,140,255) #cfb <nil>
 ```
