@@ -1,4 +1,4 @@
-# <img src="/logo.webp" alt="CLR logo" width="200">
+# <img src="/logo.svg" alt="CLR logo" width="200">
 [![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/clr.svg)](https://pkg.go.dev/github.com/speedyhoon/clr)
 [![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/clr)](https://goreportcard.com/report/github.com/speedyhoon/clr)
 
