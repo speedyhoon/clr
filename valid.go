@@ -6,8 +6,9 @@ import (
 )
 
 var (
-	ErrInvalid     = errors.New("invalid value: expected a color name or 3, 4, 6, or 8 hexadecimal digits")
-	ErrExceedRange = errors.New("expected an integer between 0 and 255")
+	ErrInvalid      = errors.New("invalid value: expected a color name or 3, 4, 6, or 8 hexadecimal digits")
+	ErrExceedRange  = errors.New("expected an integer between 0 and 255")
+	ErrNot3Channels = errors.New("expected three channels for an RGB color")
 
 	Hex3 = regexp.MustCompile(`^#?[[:xdigit:]]{3}$`)
 	Hex4 = regexp.MustCompile(`^#?[[:xdigit:]]{4}$`)

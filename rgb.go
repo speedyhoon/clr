@@ -26,7 +26,7 @@ func FromRGB(color string) (h C32, err error) {
 
 	channels := strings.Split(color, ",")
 	if len(channels) != 3 {
-		return 0, ErrInvalid
+		return 0, ErrNot3Channels
 	}
 
 	var R, G, B uint8
