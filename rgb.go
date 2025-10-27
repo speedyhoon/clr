@@ -3,7 +3,6 @@ package clr
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
 
 func (c C32) RGB() string {
@@ -14,80 +13,65 @@ func (c C32) RGBA() string {
 	return fmt.Sprintf("rgb(%d,%d,%d,%d)", c>>rr, c>>gg&xFF, c>>bb&xFF, c&xFF)
 }
 
-// FromRGB converts 3 (RGB) or 4 (RGBA) comma separated channels ranging from 0 to 255 in base 10 into C32.
-// Expected color string formats are:
+const rgbChannels, rgbaChannels int8 = 3, 4
+
+// FromRGB converts 3 channels (red, green, and blue) ranging from 0 to 255 in base 10 into C32.
+// All formats are supported, provided a non-numeric character separates each value. For example:
 //
 //	rgb(0,0,0)
-//	rgba(0, 0, 0, 0)
-//	0,0,0
-//	0,0,0,0
+//	0_0 0
 func FromRGB(color string) (h C32, err error) {
-	color = TrimRGBPrefix(color)
-
-	channels := strings.Split(color, ",")
-	if len(channels) != 3 {
-		return 0, ErrNot3Channels
-	}
-
 	var R, G, B uint8
-	R, err = parse8bitChannel(channels[0])
-	if err != nil {
-		return
-	}
-
-	G, err = parse8bitChannel(channels[1])
-	if err != nil {
-		return
-	}
-
-	B, err = parse8bitChannel(channels[2])
-	if err != nil {
-		return
-	}
-
-	return New32(R, G, B, xFF), nil
+	R, G, B, _, err = parseRGBA(color, rgbChannels)
+	return New32(R, G, B, xFF), err
 }
 
+// FromRGBA converts 4 channels (red, green, blue, and alpha) ranging from 0 to 255 in base 10 into C32.
+// All formats are supported, provided a non-numeric character separates each value. For example:
+//
+//	rgba(0, 0, 0, 0)
+//	0!0-0=0
 func FromRGBA(color string) (h C32, err error) {
-	color = TrimRGBPrefix(color)
-
-	channels := strings.Split(color, ",")
-	if len(channels) != 4 {
-		return 0, ErrInvalid
-	}
-
 	var R, G, B, A uint8
-
-	R, err = parse8bitChannel(channels[0])
-	if err != nil {
-		return
-	}
-
-	G, err = parse8bitChannel(channels[1])
-	if err != nil {
-		return
-	}
-
-	B, err = parse8bitChannel(channels[2])
-	if err != nil {
-		return
-	}
-
-	A, err = parse8bitChannel(channels[3])
-	if err != nil {
-		return
-	}
-
-	return New32(R, G, B, A), nil
+	R, G, B, A, err = parseRGBA(color, rgbaChannels)
+	return New32(R, G, B, A), err
 }
 
-func TrimRGBPrefix(color string) string {
-	color = strings.ReplaceAll(color, " ", "")
-	color = strings.ReplaceAll(color, "\t", "")
-	color = strings.TrimRight(color, ")")
-	color = strings.ToLower(color)
-	color = strings.TrimPrefix(color, "rgb(")
-	return strings.TrimPrefix(color, "rgba(")
+func parseRGBA(color string, channelsQty int8) (r, g, b, a uint8, err error) {
+	var index int8
+	var prevIsNumeric bool
+	ptr := []*uint8{&r, &g, &b, &a}
+	var start, i int
+
+	var c rune
+	for i, c = range color {
+		if isNumeric(c) {
+			if !prevIsNumeric {
+				start = i
+				prevIsNumeric = true
+			}
+
+			continue
+		}
+
+		if prevIsNumeric {
+			*ptr[index], err = parse8bitChannel(color[start:i])
+
+			index++
+			if index >= channelsQty || err != nil {
+				return
+			}
+
+			prevIsNumeric = false
+		}
+	}
+
+	if index+1 != channelsQty {
+		return r, g, b, a, ErrNot3Channels
+	}
+
+	*ptr[index], err = parse8bitChannel(color[start:i])
+	return
 }
 
 // parse8bitChannel converts a base 10 decimal string into an uint8.
@@ -98,4 +82,8 @@ func parse8bitChannel(c string) (uint8, error) {
 		return 0, ErrExceedRange
 	}
 	return uint8(C), nil
+}
+
+func isNumeric(c rune) bool {
+	return c >= '0' && c <= '9'
 }

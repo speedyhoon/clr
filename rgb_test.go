@@ -15,11 +15,11 @@ func TestFromRGB(t *testing.T) {
 	}{
 		{color: "rgb(255, 255, 255)", want: clr.White},
 		{color: "rgb(255,255,255)", want: clr.White},
-		{color: "rgb(255 255 255)", want: clr.TransparentBlack, err: clr.ErrNot3Channels},
+		{color: "rgb(255 255 255)", want: clr.White},
 		{color: "rgb(0, 0, 0)", want: clr.Black},
 		{color: "rgb(0,0,0)", want: clr.Black},
-		{color: "rgb(0 0 0)", want: clr.TransparentBlack, err: clr.ErrNot3Channels},
-		{color: "rgb(255,258,255)", want: clr.TransparentBlack, err: clr.ErrExceedRange},
+		{color: "rgb(0 0 0)", want: clr.Black},
+		{color: "rgb(255,258,255)", err: clr.ErrExceedRange, want: clr.Red},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test[%d]=`%v`", i, tt.color), func(t *testing.T) {
