@@ -15,8 +15,6 @@ const (
 	f11        float32 = x11       // Used for rounding.
 	rr, gg, bb         = 24, 16, 8 // Bitshift for each channel
 	bitSize            = 32
-
-	c32AlphaDefault = "ff"
 )
 
 func New32(R, G, B, A uint8) C32 {
@@ -58,8 +56,18 @@ func New32Str(color string) (_ C32, err error) {
 // FromHex6 converts a 6-digit hexadecimal string into a 32-bit color.
 //
 //	FromHex6("#FF6600")
-func FromHex6(c string) (C32, error) {
-	return FromHex8(c + c32AlphaDefault)
+func FromHex6(color string) (C32, error) {
+	if !IsValidHex6(color) {
+		return 0, ErrInvalid
+	}
+
+	color = strings.TrimPrefix(color, hexPrefix)
+	u64, err := strconv.ParseUint(color, gg, rr)
+	if err != nil {
+		return 0, ErrInvalid
+	}
+
+	return C32(u64)<<bb | xFF, nil
 }
 
 // FromHex8 converts an 8-digit hexadecimal string into a 32-bit color.

@@ -609,3 +609,35 @@ func TestC32_Is16bit(t *testing.T) {
 		})
 	}
 }
+
+func TestFromHex6(t *testing.T) {
+	tests := []struct {
+		color   string
+		want    C32
+		wantErr bool
+	}{
+		{wantErr: true},
+		{color: "#0", wantErr: true},
+		{color: "#00", wantErr: true},
+		{color: "#000", wantErr: true},
+		{color: "#0000", wantErr: true},
+		{color: "#00000", wantErr: true},
+		{color: "#000000", want: Black, wantErr: false},
+		{color: "#abcdef", want: C32(0xabcdefff), wantErr: false},
+		{color: "#bcdefg", wantErr: true},
+		{color: "#0000000", wantErr: true},
+		{color: "#00000000", wantErr: true},
+	}
+	for i, tt := range tests {
+		t.Run(fmt.Sprintf("test[%d]", i), func(t *testing.T) {
+			got, err := FromHex6(tt.color)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("FromHex6() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("FromHex6() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
