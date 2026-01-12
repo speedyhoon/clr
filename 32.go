@@ -120,6 +120,10 @@ func (c C32) Hex8() string {
 func (c C32) String() string {
 	// Hex 3 or 6 digit.
 	if c&xFF == xFF {
+		if c == Red {
+			return clrn.Red
+		}
+
 		if c.Is24bit() {
 			// Check if the color is a named-color that's shorter than the 6-digit hexadecimal string.
 			switch c {
@@ -187,9 +191,6 @@ func (c C32) String() string {
 			return c.Hex6()
 		}
 
-		if c == Red {
-			return clrn.Red
-		}
 		return c.Hex3()
 	} else if c.Is24bit() || c&xFF%x11 != 0 {
 		return c.Hex8()
