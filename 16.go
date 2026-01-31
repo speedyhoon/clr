@@ -25,7 +25,7 @@ const (
 //
 //	New16Hex(255, 102, 0, 255)
 func New16(R, G, B, A uint8) C16 {
-	return Round(C32(R)<<r) | Round(C32(G)<<g) | Round(C32(B)<<b) | Round(C32(A))
+	return Round(C32(R))<<r | Round(C32(G))<<g | Round(C32(B))<<b | Round(C32(A))
 }
 
 // New16Hex returns a new 16-bit color where R, G, B, and A are expected to be a hexadecimal ranging from 0 to F.
