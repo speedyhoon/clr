@@ -23,7 +23,7 @@ const rgbChannels, rgbaChannels int8 = 3, 4
 func FromRGB(color string) (h C32, err error) {
 	var R, G, B uint8
 	R, G, B, _, err = parseRGBA(color, rgbChannels)
-	return New32(R, G, B, xFF), err
+	return New32RGBA(R, G, B, xFF), err
 }
 
 // FromRGBA converts 4 channels (red, green, blue, and alpha) ranging from 0 to 255 in base 10 into C32.
@@ -34,7 +34,7 @@ func FromRGB(color string) (h C32, err error) {
 func FromRGBA(color string) (h C32, err error) {
 	var R, G, B, A uint8
 	R, G, B, A, err = parseRGBA(color, rgbaChannels)
-	return New32(R, G, B, A), err
+	return New32RGBA(R, G, B, A), err
 }
 
 func parseRGBA(color string, channelsQty int8) (r, g, b, a uint8, err error) {

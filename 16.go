@@ -20,16 +20,16 @@ const (
 	c16AlphaDefault = "f"
 )
 
-// New16 returns a new 16-bit color where R, G, B, and A are converted from 0-255 range to 0-F hexadecimal.
+// New16RGBA returns a new 16-bit color where R, G, B, and A are converted from 0-255 range to 0-F hexadecimal.
 // Use New16Hex for 4-bit hexadecimal integers ranging from 0 to F.
 //
-//	New16Hex(255, 102, 0, 255)
-func New16(R, G, B, A uint8) C16 {
+//	New16RGBA(255, 102, 0, 255)
+func New16RGBA(R, G, B, A uint8) C16 {
 	return Round(C32(R))<<r | Round(C32(G))<<g | Round(C32(B))<<b | Round(C32(A))
 }
 
 // New16Hex returns a new 16-bit color where R, G, B, and A are expected to be a hexadecimal ranging from 0 to F.
-// Use New16 for 8-bit integers ranging from 0 to 255.
+// Use New16RGBA for 8-bit integers ranging from 0 to 255.
 //
 //	New16Hex(0xF, 0x6, 0x0, 0xF)
 func New16Hex(R, G, B, A uint8) C16 {

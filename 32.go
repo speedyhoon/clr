@@ -17,7 +17,7 @@ const (
 	bitSize            = 32
 )
 
-func New32(R, G, B, A uint8) C32 {
+func New32RGBA(R, G, B, A uint8) C32 {
 	return C32(R)<<rr | C32(G)<<gg | C32(B)<<bb | C32(A)
 }
 

@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestNew16(t *testing.T) {
+func TestNew16RGBA(t *testing.T) {
 	tests := []struct {
 		name    string
 		want    clr.C16
@@ -1546,8 +1546,8 @@ func TestNew16(t *testing.T) {
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test[%d]", i), func(t *testing.T) {
-			if got := clr.New16(tt.R, tt.G, tt.B, 255); got != tt.want {
-				t.Errorf("New16() = %v, want %v", got, tt.want)
+			if got := clr.New16RGBA(tt.R, tt.G, tt.B, 255); got != tt.want {
+				t.Errorf("New16RGBA() = %v, want %v", got, tt.want)
 			}
 		})
 	}
