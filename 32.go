@@ -17,6 +17,10 @@ const (
 	bitSize            = 32
 )
 
+func New32RGB(R, G, B uint8) C32 {
+	return New32RGBA(R, G, B, xFF)
+}
+
 func New32RGBA(R, G, B, A uint8) C32 {
 	return C32(R)<<rr | C32(G)<<gg | C32(B)<<bb | C32(A)
 }
