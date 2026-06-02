@@ -87,3 +87,7 @@ func parse8bitChannel(c string) (uint8, error) {
 func isNumeric(c rune) bool {
 	return c >= '0' && c <= '9'
 }
+
+func (c C32) ToRGB() (r, g, b uint8) {
+	return uint8(c >> 24), uint8(c >> 16), uint8(c >> 8)
+}
